@@ -1,0 +1,43 @@
+<!-- <h2>Welcome to {{hotelName}}</h2> -->
+<!-- <hinv-header></hinv-header> -->
+<!-- <hinv-header></hinv-header> -->
+<!-- <hinv-header></hinv-header> -->
+<hinv-header></hinv-header>
+
+<!-- {{ rooms$ | async | json }} -->
+
+<div [hidden]="hideRooms">
+    Number of Rooms:
+    <div [ngStyle]="{'background-color': rooms.availableRooms > 0? 'green':'red'}" 
+        [innerText]="numberOfRooms">
+    </div>
+</div>
+
+<div *ngIf="selectedRoom">
+    {{ selectedRoom | json}}
+</div>
+
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
+<h3>
+    <!-- {{ getError$ | async}} -->
+    Number of Rooms: {{ roomsCount$ | async }}
+</h3>
+<div *ngIf="rooms$ | async as rooms">
+    <hinv-rooms-list [rooms]="rooms" [title]="title"
+    (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+</div>
+
+<button (click)="toggle()">Toggle</button>
+
+<button (click)="editRoom()">Edit Room</button>
+
+<button (click)="deleteRoom()">Delete Room</button>
+
+
+<h1>{{ totalBytes }} loaded</h1>
+
+<router-outlet></router-outlet>
+
