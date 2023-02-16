@@ -44,6 +44,10 @@
         matInput formControlName="guestName" 
         placeholder="Guest Name">
 
+        {{ bookingForm.get('guestName')?.errors | json}}
+        <mat-error *ngIf="bookingForm.get('guestName')?.hasError('invalidName')">
+            Guest Name must not contain test
+        </mat-error>
         <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
             Guest Name should be at least 5 characters
         </mat-error>
@@ -85,6 +89,11 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
+
+        <!-- {{ bookingForm.get('checkoutDate')?.errors | json}} -->
+        <mat-error *ngIf="bookingForm.get('checkoutDate')?.hasError('invalidDate')">
+            Checkout date has to be later than checkin date
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">

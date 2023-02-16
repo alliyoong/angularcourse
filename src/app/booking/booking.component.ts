@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import {ConfigService} from '../services/config.service';
 import { BookingService } from './booking.service';
+import { CustomValidator } from './validators/custom-validator';
 
 @Component({selector: 'hinv-booking', templateUrl: './booking.component.html', styleUrls: ['./booking.component.scss']})
 export class BookingComponent implements OnInit {
@@ -25,7 +26,7 @@ export class BookingComponent implements OnInit {
             bookingAmount: [''],
             bookingDate: [''],
             mobileNumber: ['', {updateOn: 'blur'}],
-            guestName: ['', [Validators.required, Validators.minLength(5)]],
+            guestName: ['', [Validators.required, Validators.minLength(5), CustomValidator.ValidateName, CustomValidator.ValidateSpecialChar('*')]],
             address: this.fb.group(
                 {
                     addressLine1: ['', {validators: [Validators.required]}],
@@ -43,7 +44,7 @@ export class BookingComponent implements OnInit {
             ),
             tnc: new FormControl(false,{validators: [Validators.requiredTrue]})
         }, 
-        // {updateOn: 'blur'}
+        {updateOn: 'blur', validators: [CustomValidator.ValidateDate]}
         )
         
         this.getBookingData();
