@@ -6,9 +6,10 @@ import { RoomsComponent } from './rooms.component';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 import { RoomsAddComponent } from './rooms-add/rooms-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderModule } from '../header/header.module';
 import { RouteConfigToken } from '../services/routeConfig.service';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -17,12 +18,14 @@ import { RouteConfigToken } from '../services/routeConfig.service';
     RoomsListComponent,
     RoomsBookingComponent,
     RoomsAddComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,
     RoomsRoutingModule,
     FormsModule,
-    HeaderModule
+    HeaderModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

@@ -25,8 +25,14 @@
     <!-- {{ getError$ | async}} -->
     Number of Rooms: {{ roomsCount$ | async }}
 </h3>
+
+{{ priceFilter | json }}
+<div>
+    <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter">
+</div>
+
 <div *ngIf="rooms$ | async as rooms">
-    <hinv-rooms-list [rooms]="rooms" [title]="title"
+    <hinv-rooms-list [rooms]="rooms" [price]="priceFilter.value" [title]="title"
     (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 

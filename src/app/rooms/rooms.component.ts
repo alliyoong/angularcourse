@@ -1,5 +1,6 @@
 import { HttpEventType } from '@angular/common/http';
 import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, OnDestroy, QueryList, SkipSelf, ViewChild, ViewChildren, ɵisObservable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { ConfigService } from '../services/config.service';
@@ -38,6 +39,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   totalBytes = 0;
 
   subscription!: Subscription;
+  
+  priceFilter = new FormControl(0, {nonNullable: true});
   
   error$ = new Subject<string>;
   getError$ = this.error$.asObservable();

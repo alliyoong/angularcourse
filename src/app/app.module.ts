@@ -25,6 +25,7 @@ import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directi
 // import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
 import { RouteConfigToken } from './services/routeConfig.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 function initFactory(initService: InitService){
   return () => initService.init();
@@ -54,7 +55,8 @@ function initFactory(initService: InitService){
     MatIconModule,
     MatListModule,
     FormsModule,
-    HeaderModule
+    HeaderModule,
+    MatSnackBarModule
   ],
   providers: [
     {
